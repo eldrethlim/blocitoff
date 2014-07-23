@@ -13,6 +13,25 @@ group :production do
   gem 'rails_12factor'
 end
 
+#Testing
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails', '~> 4.0'
+  gem 'database_cleaner'
+  gem 'capybara'
+  gem 'pry-rails'
+  gem 'pry-doc'
+end
+
+#Bootstrap
+gem 'bootstrap-sass', '~> 3.2.0'
+
+#Figaro
+gem 'figaro'
+
+# Users
+gem 'devise'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets

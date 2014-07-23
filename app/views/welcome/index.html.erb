@@ -1,0 +1,5 @@
+<% if current_user %>
+  <%= render partial: '/tasks/index', locals: {user: current_user} %>
+<% else %>
+  <%= render partial: '/devise/sessions/new' %>
+<% end %>
