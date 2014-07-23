@@ -1,5 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe "welcome/index.html.erb", :type => :view do
-  pending "add some examples to (or delete) #{__FILE__}"
+feature "Visiting Home Page" do
+  scenario "See Website Name" do
+    visit '/'
+    expect(page).to have_content 'Blocitoff'
+  end
 end
