@@ -1,3 +1,11 @@
 <div class="container">
-  I make tasks here. Hear me roar!
+  <div class="spacing">
+    <%= render partial: '/tasks/form' %>
+  </div>
+<div>
+  <% @tasks.each do |task| %>
+    <p> <%= task.name %> </p>
+  <% end %>
+</div>
+
 </div>
