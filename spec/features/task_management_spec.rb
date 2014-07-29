@@ -36,6 +36,17 @@ describe 'Task management' do
     expect(current_path).to eq('/')
   end
 
+  it 'should not allow a user to edit a task into an empty name field' do
+    sign_in @user, 'Password1'
+    fill_in 'Task name', with: 'This is just another test task.'
+    click_button 'Add Task'
+    click_link 'Edit Task'
+    fill_in 'Task name', with: ""
+    click_button 'Edit Task'
+    expect(page).to have_content('Error updating task.')
+    expect(current_path).to eq('/')
+  end
+
   private
 
   def sign_in(user, password)
