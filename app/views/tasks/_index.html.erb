@@ -1,11 +1,24 @@
 <div class="container">
   <div class="spacing">
-    <%= render partial: '/tasks/form' %>
+    <%= render partial: '/tasks/new', locals: { task: @task } %>
   </div>
-<div>
+
+<table class="table table-hover table-bordered table-condensed table-responsive">
+  <tr>
+    <td> Task Name </td>
+    <td> Complete </td>
+    <td> Days Left </td>
+    <td> Edit Task </td>
+  </tr>
+
   <% @tasks.each do |task| %>
-    <p> <%= task.name %> </p>
+    <tr>
+      <td><%= task.name %></td>
+      <td> Complete? </td>
+      <td> Days left </td>
+      <td><%= link_to "Edit Task", edit_task_path(task), class: 'btn btn-success' %></td>
+    </tr>
   <% end %>
-</div>
+</table>
 
 </div>

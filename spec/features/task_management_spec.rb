@@ -10,17 +10,29 @@ describe 'Task management' do
 
   it 'should allow a user to add a new task' do
     sign_in @user, 'Password1'
-    fill_in 'Task name', with: 'Refactor User model'
-    click_button 'Add'
-    expect(page).to have_content('Task added')
-    expect(page).to have_content('Refactor User model')
+    fill_in 'Task name', with: 'This is a test task.'
+    click_button 'Add Task'
+    expect(page).to have_content('New task added.')
+    expect(page).to have_content('This is a test task.')
     expect(current_path).to eq('/')
   end
 
   it 'should not allow a user to add a task without a name' do
     sign_in @user, 'Password1'
-    click_button 'Add'
-    expect(page).to have_content('Task not added')
+    click_button 'Add Task'
+    expect(page).to have_content('Error adding task.')
+    expect(current_path).to eq('/')
+  end
+
+  it 'should allow a user to edit a task' do
+    sign_in @user, 'Password1'
+    fill_in 'Task name', with: 'This is another test task.'
+    click_button 'Add Task'
+    click_link 'Edit Task'
+    fill_in 'Task name', with: 'This is the edited task.'
+    click_button 'Edit Task'
+    expect(page).to have_content('Task updated.')
+    expect(page).to have_content('This is the edited task.')
     expect(current_path).to eq('/')
   end
 
