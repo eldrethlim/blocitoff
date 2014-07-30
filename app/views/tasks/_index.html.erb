@@ -9,48 +9,50 @@
   </div>
 
   <div class="doublespacing">
-    <h4><u>My pending tasks</u></h4>
+    <h4><u>My incomplete tasks</u></h4>
   </div>
 
-  <% @tasks.each do |task| %>
-    <% if task.complete == false %>
-      <div class="doublespacing">
-        <table class="table table-hover table-bordered table-condensed table-responsive small">
-          <tr>
-            <td> Task Name </td>
-            <td align="center"> Days Left </td>
-            <td colspan="2" align="center"> Task Controls </td>
-          </tr>
+  <div class="doublespacing">
+    <table class="table table-hover table-bordered table-condensed table-responsive small">
+      <tr>
+        <td> Task Name </td>
+        <td align="center"> Days Left </td>
+        <td colspan="2" align="center"> Task Controls </td>
+      </tr>
+      
+      <% @tasks.each do |task| %>
+        <% if task.complete == false %>
           <tr>
             <td><%= link_to task.name, edit_task_path(task) %></td>
             <td align="center"> Days left </td>
-            <td align="center"> <%= link_to "Complete", complete_task_path(task), controller: 'tasks_controller', action: 'complete', method: :post, class: 'btn btn-success' %>  </td>
+            <td align="center"> <%= link_to "Completed?", complete_task_path(task), controller: 'tasks_controller', action: 'complete', method: :post, class: 'btn btn-success' %>  </td>
             <td align="center"> <%= link_to "Delete", task, method: :delete, class: 'btn btn-danger', data: {confirm: 'Delete task?'} %></td>
           </tr>
-        </table>
-      </div>
-    <% end %>
-  <% end %>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
 
   <div class="doublespacing">
     <h4><u>My completed tasks</u></h4>
   </div>
 
-  <% @tasks.each do |task| %>
-    <% if task.complete == true %>
-      <div class="doublespacing">
-        <table class="table table-hover table-bordered table-condensed table-responsive small">
-          <tr>
-            <td> Task Name </td>
-            <td colspan="2" align="center"> Task Controls </td>
-          </tr>
+  <div class="doublespacing">
+    <table class="table table-hover table-bordered table-condensed table-responsive small">
+      <tr>
+        <td> Task Name </td>
+        <td colspan="2" align="center"> Task Controls </td>
+      </tr>
+
+      <% @tasks.each do |task| %>
+        <% if task.complete == true %>
           <tr>
             <td><%= link_to task.name, edit_task_path(task) %></td>
-            <td align="center"> Complete? </td>
+            <td align="center"> <%= link_to "Incomplete?", incomplete_task_path(task), controller: 'tasks_controller', action: 'incomplete', method: :post, class: 'btn btn-warning' %></td>
             <td align="center"> <%= link_to "Delete", task, method: :delete, class: 'btn btn-danger', data: {confirm: 'Delete task?'} %></td>
           </tr>
-        </table>
-      </div>
-    <% end %>
-  <% end %>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
 </div>

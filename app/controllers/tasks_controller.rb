@@ -48,6 +48,17 @@ class TasksController < ApplicationController
     redirect_to root_path
   end
 
+  def incomplete
+    @task = Task.find(params[:id])
+
+    if @task.update(complete: false)
+      flash[:notice] = "It's not done after all!"
+    else
+      flash[:error] = "Error setting this task as incomplete."
+    end
+    redirect_to root_path
+  end
+  
   private
 
   def task_params

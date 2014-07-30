@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :tasks do
     member do
       post 'complete'
+      post 'incomplete'
     end
   end
 

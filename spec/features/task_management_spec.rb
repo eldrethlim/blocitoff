@@ -61,8 +61,18 @@ describe 'Task management' do
     sign_in @user, 'Password1'
     fill_in 'Task name', with: 'A task'
     click_button 'Add Task'
-    click_link 'Complete'
+    click_link 'Completed?'
     expect(page).to have_content('Task completed. Good job!')
+    expect(current_path).to eq('/')
+  end
+
+  it 'should allow a user to incomplete a task' do
+    sign_in @user, 'Password1'
+    fill_in 'Task name', with: 'a task'
+    click_button 'Add Task'
+    click_link 'Complete'
+    click_link 'Incomplete?'
+    expect(page).to have_content("It's not done after all!")
     expect(current_path).to eq('/')
   end
 
