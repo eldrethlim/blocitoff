@@ -2,10 +2,11 @@ Rails.application.routes.draw do
   get 'tasks/index'
 
   devise_for :users
-  resources :tasks
-
-  #Complete Task
-  post "tasks/index/" => 'tasks#complete'
+  resources :tasks do
+    member do
+      post 'complete'
+    end
+  end
 
   #Home Page
   root to: "welcome#index"

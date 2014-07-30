@@ -39,7 +39,13 @@ class TasksController < ApplicationController
 
   def complete
     @task = Task.find(params[:id])
-    @task.complete_task
+    
+    if @task.update(complete: true)
+      flash[:notice] = "Task completed. Good job!"
+    else
+      flash[:error] = "Error completing task."
+    end
+    redirect_to root_path
   end
 
   private

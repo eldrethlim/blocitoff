@@ -61,7 +61,7 @@ describe 'Task management' do
     sign_in @user, 'Password1'
     fill_in 'Task name', with: 'A task'
     click_button 'Add Task'
-    click_link 'Yay!'
+    click_link 'Complete'
     expect(page).to have_content('Task completed. Good job!')
     expect(current_path).to eq('/')
   end

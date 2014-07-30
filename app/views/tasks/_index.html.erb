@@ -8,6 +8,10 @@
     <%= render partial: '/tasks/new', locals: { task: @newtask } %>
   </div>
 
+  <div class="doublespacing">
+    <h4><u>My pending tasks</u></h4>
+  </div>
+
   <% @tasks.each do |task| %>
     <% if task.complete == false %>
       <div class="doublespacing">
@@ -20,13 +24,19 @@
           <tr>
             <td><%= link_to task.name, edit_task_path(task) %></td>
             <td align="center"> Days left </td>
-            <td align="center"> <%= link_to "Yay!", controller: :tasks_controller, method: :complete, id: task.id, class: 'btn btn-success' %>  </td>
+            <td align="center"> <%= link_to "Complete", complete_task_path(task), controller: 'tasks_controller', action: 'complete', method: :post, class: 'btn btn-success' %>  </td>
             <td align="center"> <%= link_to "Delete", task, method: :delete, class: 'btn btn-danger', data: {confirm: 'Delete task?'} %></td>
           </tr>
         </table>
       </div>
     <% end %>
+  <% end %>
 
+  <div class="doublespacing">
+    <h4><u>My completed tasks</u></h4>
+  </div>
+
+  <% @tasks.each do |task| %>
     <% if task.complete == true %>
       <div class="doublespacing">
         <table class="table table-hover table-bordered table-condensed table-responsive small">

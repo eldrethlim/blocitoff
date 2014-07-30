@@ -7,9 +7,4 @@ class Task < ActiveRecord::Base
   def set_complete_false
     self.update(complete: false)
   end
-
-  def complete_task
-    self.update(complete: true)
-  end
-  
 end
