@@ -57,6 +57,15 @@ describe 'Task management' do
     expect(current_path).to eq('/')
   end
 
+  it 'should allow a user to complete a task' do
+    sign_in @user, 'Password1'
+    fill_in 'Task name', with: 'A task'
+    click_button 'Add Task'
+    click_link 'Yay!'
+    expect(page).to have_content('Task completed. Good job!')
+    expect(current_path).to eq('/')
+  end
+
   private
 
   def sign_in(user, password)

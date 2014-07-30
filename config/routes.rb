@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   devise_for :users
   resources :tasks
 
+  #Complete Task
+  post "tasks/index/" => 'tasks#complete'
+
   #Home Page
   root to: "welcome#index"
 end

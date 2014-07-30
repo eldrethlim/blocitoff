@@ -37,9 +37,14 @@ class TasksController < ApplicationController
     redirect_to root_path
   end
 
+  def complete
+    @task = Task.find(params[:id])
+    @task.complete_task
+  end
+
   private
 
   def task_params
-    params.require(:task).permit(:name)
+    params.require(:task).permit(:name, :complete)
   end
 end

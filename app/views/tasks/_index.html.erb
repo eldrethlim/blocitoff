@@ -8,23 +8,39 @@
     <%= render partial: '/tasks/new', locals: { task: @newtask } %>
   </div>
 
-  <div class="doublespacing">
-    <table class="table table-hover table-bordered table-condensed table-responsive small">
-      <tr>
-        <td> Task Name </td>
-        <td align="center"> Days Left </td>
-        <td colspan="2" align="center"> Controls </td>
-      </tr>
+  <% @tasks.each do |task| %>
+    <% if task.complete == false %>
+      <div class="doublespacing">
+        <table class="table table-hover table-bordered table-condensed table-responsive small">
+          <tr>
+            <td> Task Name </td>
+            <td align="center"> Days Left </td>
+            <td colspan="2" align="center"> Task Controls </td>
+          </tr>
+          <tr>
+            <td><%= link_to task.name, edit_task_path(task) %></td>
+            <td align="center"> Days left </td>
+            <td align="center"> <%= link_to "Yay!", controller: :tasks_controller, method: :complete, id: task.id, class: 'btn btn-success' %>  </td>
+            <td align="center"> <%= link_to "Delete", task, method: :delete, class: 'btn btn-danger', data: {confirm: 'Delete task?'} %></td>
+          </tr>
+        </table>
+      </div>
+    <% end %>
 
-      <% @tasks.each do |task| %>
-        <tr>
-          <td><%= link_to task.name, edit_task_path(task) %></td>
-          <td align="center"> Days left </td>
-          <td align="center"> Complete? </td>
-          <td align="center"> <%= link_to "Delete", task, method: :delete, class: 'btn btn-danger', data: {confirm: 'Delete task?'} %></td>
-        </tr>
-      <% end %>
-    </table>
-  </div>
-
+    <% if task.complete == true %>
+      <div class="doublespacing">
+        <table class="table table-hover table-bordered table-condensed table-responsive small">
+          <tr>
+            <td> Task Name </td>
+            <td colspan="2" align="center"> Task Controls </td>
+          </tr>
+          <tr>
+            <td><%= link_to task.name, edit_task_path(task) %></td>
+            <td align="center"> Complete? </td>
+            <td align="center"> <%= link_to "Delete", task, method: :delete, class: 'btn btn-danger', data: {confirm: 'Delete task?'} %></td>
+          </tr>
+        </table>
+      </div>
+    <% end %>
+  <% end %>
 </div>
