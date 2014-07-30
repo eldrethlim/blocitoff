@@ -1,23 +1,30 @@
 <div class="container">
+
+  <div class="spacing">
+    <h3><u><b>My tasks!</b></u></h3>
+  </div>
+
   <div class="spacing">
     <%= render partial: '/tasks/new', locals: { task: @newtask } %>
   </div>
 
-<table class="table table-hover table-bordered table-condensed table-responsive">
-  <tr>
-    <td> Task Name </td>
-    <td align="center"> Days Left </td>
-    <td colspan="2" align="center"> Controls </td>
-  </tr>
+  <div class="doublespacing">
+    <table class="table table-hover table-bordered table-condensed table-responsive small">
+      <tr>
+        <td> Task Name </td>
+        <td align="center"> Days Left </td>
+        <td colspan="2" align="center"> Controls </td>
+      </tr>
 
-  <% @tasks.each do |task| %>
-    <tr>
-      <td><%= link_to task.name, edit_task_path(task) %></td>
-      <td align="center"> Days left </td>
-      <td align="center"> Complete? </td>
-      <td align="center"> <%= link_to "Delete", task, method: :delete, class: 'btn btn-danger', data: {confirm: 'Delete task?'} %></td>
-    </tr>
-  <% end %>
-</table>
+      <% @tasks.each do |task| %>
+        <tr>
+          <td><%= link_to task.name, edit_task_path(task) %></td>
+          <td align="center"> Days left </td>
+          <td align="center"> Complete? </td>
+          <td align="center"> <%= link_to "Delete", task, method: :delete, class: 'btn btn-danger', data: {confirm: 'Delete task?'} %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
 
 </div>
