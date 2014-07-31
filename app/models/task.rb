@@ -7,4 +7,12 @@ class Task < ActiveRecord::Base
   def set_complete_false
     self.update(complete: false)
   end
+
+  def days_left
+    7 - days_elapsed
+  end
+
+  def days_elapsed
+    ((Time.now - self.created_at)/1.day).to_i
+  end
 end
