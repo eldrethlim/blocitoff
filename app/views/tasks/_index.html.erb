@@ -14,22 +14,21 @@
 
   <div class="doublespacing">
     <table class="table table-hover table-bordered table-condensed table-responsive small">
-      <tr>
-        <td> Task Name </td>
-        <td align="center"> Days Left </td>
-        <td colspan="2" align="center"> Task Controls </td>
-      </tr>
+      <thead>
+        <tr>
+          <td> Task Name </td>
+          <td align="center"> Days Left </td>
+          <td colspan="2" align="center"> Task Controls </td>
+        </tr>
+      </thead>
       
-      <% @tasks.each do |task| %>
-        <% if task.complete == false %>
-          <tr>
-            <td><%= link_to task.name, edit_task_path(task) %></td>
-            <td align="center"> <%= task.days_left %> </td>
-            <td align="center"> <%= link_to "Completed?", complete_task_path(task), controller: 'tasks_controller', action: 'complete', method: :post, class: 'btn btn-success' %>  </td>
-            <td align="center"> <%= link_to "Delete", task, method: :delete, class: 'btn btn-danger', data: {confirm: 'Delete task?'} %></td>
-          </tr>
+      <tbody id="incomplete_tasks">
+        <% @tasks.each do |task| %>
+          <% if task.complete == false %>
+            <%= render partial: '/tasks/row', locals: {task: task} %>
+          <% end %>
         <% end %>
-      <% end %>
+      </tbody>
     </table>
   </div>
 

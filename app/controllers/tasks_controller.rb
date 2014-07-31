@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_filter :authenticate_user!
+  respond_to :html, :js
 
   def edit
     @task = Task.find(params[:id])
@@ -23,7 +24,10 @@ class TasksController < ApplicationController
     else
       flash[:error] = "Error adding task."
     end
-    redirect_to root_path
+
+    respond_with(@task) do |f|
+      f.html { redirect_to root_path }
+    end
   end
 
   def destroy
