@@ -9,9 +9,9 @@
   </td>
   <td align="center">
     <% if task.complete == true %>
-      <%= link_to "Incomplete?", incomplete_task_path(task), controller: 'tasks_controller', action: 'incomplete', method: :post, class: 'btn btn-warning' %>
+      <%= link_to "Incomplete?", incomplete_task_path(task), controller: 'tasks_controller', action: 'incomplete', remote: true, method: :post, class: 'btn btn-warning' %>
     <% else %>
-      <%= link_to "Completed?", complete_task_path(task), controller: 'tasks_controller', action: 'complete', method: :post, class: 'btn btn-success' %>
+      <%= link_to "Completed?", complete_task_path(task), controller: 'tasks_controller', action: 'complete', remote: true, method: :post, class: 'btn btn-success' %>
     <% end %>  
   </td>
   <td align="center"> <%= link_to "Delete", task, method: :delete, remote: true, class: 'btn btn-danger', data: {confirm: 'Delete task?'} %></td>
