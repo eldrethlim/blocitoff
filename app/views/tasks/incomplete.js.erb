@@ -1,0 +1,2 @@
+$('#task_row_<%= @task.id %>').remove();
+$('#incomplete_tasks').prepend("<%= escape_javascript(render(partial: '/tasks/table', locals: {task: @task})) %>");

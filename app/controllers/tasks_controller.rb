@@ -70,7 +70,10 @@ class TasksController < ApplicationController
     else
       flash[:error] = "Error setting this task as incomplete."
     end
-    redirect_to root_path
+    
+    respond_with(@task) do |f|
+      f.html { redirect_to root_path }
+    end
   end
   
   private

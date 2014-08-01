@@ -1,8 +1,8 @@
-<div>
-  <%= form_for task, remote: true, id: 'new_task' do |f| %>
+<div id="form_task_container">
+  <%= form_for task, remote: true do |f| %>
     <%= f.label :name, "Task name:" %>
     <%= f.text_field :name, class: 'form-group' %>
     <%= f.submit "Save", class: 'btn btn-success' %>
   <% end %>
-  <%= link_to "Go back", root_path, class: 'btn btn-info', id: 'go_back' %>
+  <%= link_to "Go back", "#", class: 'btn btn-info', id: 'go_back' %>
 </div>
