@@ -2,6 +2,10 @@ class TasksController < ApplicationController
   before_filter :authenticate_user!
   respond_to :html, :js
 
+  def new
+    @task = Task.new
+  end
+
   def edit
     @task = Task.find(params[:id])
   end
@@ -38,7 +42,10 @@ class TasksController < ApplicationController
     else
       flash[:error] = "Error deleting task."
     end
-    redirect_to root_path
+    
+    respond_with(@task) do |f|
+      f.html { redirect_to root_path }
+    end
   end
 
   def complete

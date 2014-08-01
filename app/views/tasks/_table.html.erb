@@ -1,4 +1,4 @@
-<tr>
+<tr id="task_row_<%= task.id %>">
   <td><%= link_to task.name, edit_task_path(task) %></td>
   <td align="center">
     <% if task.complete == true %>
@@ -14,5 +14,5 @@
       <%= link_to "Completed?", complete_task_path(task), controller: 'tasks_controller', action: 'complete', method: :post, class: 'btn btn-success' %>
     <% end %>  
   </td>
-  <td align="center"> <%= link_to "Delete", task, method: :delete, class: 'btn btn-danger', data: {confirm: 'Delete task?'} %></td>
+  <td align="center"> <%= link_to "Delete", task, method: :delete, remote: true, class: 'btn btn-danger', data: {confirm: 'Delete task?'} %></td>
 </tr>
