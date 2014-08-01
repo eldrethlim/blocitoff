@@ -1,6 +1,0 @@
-<tr>
-  <td><%= link_to task.name, edit_task_path(task) %></td>
-  <td align="center"> <%= task.days_left %> </td>
-  <td align="center"> <%= link_to "Completed?", complete_task_path(task), controller: 'tasks_controller', action: 'complete', method: :post, class: 'btn btn-success' %>  </td>
-  <td align="center"> <%= link_to "Delete", task, method: :delete, class: 'btn btn-danger', data: {confirm: 'Delete task?'} %></td>
-</tr>
