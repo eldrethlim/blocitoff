@@ -1,5 +1,5 @@
 <tr id="task_row_<%= task.id %>">
-  <td><%= link_to task.name, edit_task_path(task) %></td>
+  <td><%= link_to task.name, edit_task_path(task), id: "edit_task_#{task.id}_link", remote: true %></td>
   <td align="center">
     <% if task.complete == true %>
       Completed

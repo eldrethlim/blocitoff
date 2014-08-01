@@ -1,0 +1,8 @@
+$('#form_task_container').remove();
+$('#edit_task_<%= @task.id %>_link').show();
+
+<% if @task.complete %>
+  $('#completed_tasks').prepend("<%= escape_javascript(render(partial: '/tasks/table', locals: {task: @task})) %>");
+<% else %>
+  $('#incomplete_tasks').prepend("<%= escape_javascript(render(partial: '/tasks/table', locals: {task: @task})) %>");
+<% end %>

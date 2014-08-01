@@ -1,0 +1,7 @@
+$('#edit_task_<%= @task.id %>_link').hide().after("<%= escape_javascript(render(partial: '/tasks/form', locals: {task: @task})) %>");
+
+$("#go_back").on('click', function(event) {
+  $('#edit_task_<%= @task.id %>_link').show();
+  $('#form_task_container').remove();
+  event.preventDefault();
+});
