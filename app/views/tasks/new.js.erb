@@ -1,0 +1,1 @@
+$('#new_task_link').hide().after("<%= escape_javascript(render(partial: '/tasks/form', locals: {task: @task})) %>");

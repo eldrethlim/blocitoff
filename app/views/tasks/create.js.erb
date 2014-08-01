@@ -1,1 +1,4 @@
-$('#incomplete_tasks').prepend("<%= escape_javascript(render(partial: '/tasks/row', locals: {task: @task})) %>");
+$('#new_task').remove();
+$('#go_back').remove();
+$('#new_task_link').show();
+$('#incomplete_tasks').prepend("<%= escape_javascript(render(partial: '/tasks/table', locals: {task: @task})) %>");

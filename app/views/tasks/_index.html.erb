@@ -1,11 +1,15 @@
 <div class="container">
 
   <div class="spacing">
-    <h3><u><b>My tasks!</b></u></h3>
+    <% if current_user.sign_in_count == 0 %>
+      <h3><u>Welcome <%= current_user.username %>!</u></h3>
+    <% else %>
+      <h3><u>Welcome back <%= current_user.username %>!</u></h3>
+    <% end %>
   </div>
 
   <div class="spacing">
-    <%= render partial: '/tasks/new', locals: { task: @newtask } %>
+    <%= link_to "Add a new task", new_task_path, id: 'new_task_link', remote: true, class: 'btn btn-success' %>
   </div>
 
   <div class="doublespacing">

@@ -1,7 +1,0 @@
-<div>
-  <%= form_for task, remote: true do |f| %>
-    <%= f.label :name, "Task name:" %>
-    <%= f.text_field :name, class: 'form-group', placeholder: "Enter new task here" %>
-    <%= f.submit "Add Task", class: 'btn btn-success' %>
-  <% end %>
-</div>

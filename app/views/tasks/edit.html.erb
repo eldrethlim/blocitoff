@@ -1,7 +1,1 @@
-<div class="container">
-  <%= form_for @task do |f| %>
-    <%= f.label :name, "Task name:" %>
-    <%= f.text_field :name, class: 'form-group' %>
-    <%= f.submit "Edit Task", class: 'btn btn-success' %>
-  <% end %>
-</div>
+<%= render partial: 'form', locals: { task: @task } %>
