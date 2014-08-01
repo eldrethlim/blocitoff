@@ -1,1 +1,2 @@
 $("#task_row_<%= @task.id %>").remove();
+$('#flash_messages').html("<%= escape_javascript(render(partial: '/layouts/flash')) %>");

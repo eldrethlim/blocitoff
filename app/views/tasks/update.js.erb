@@ -6,3 +6,5 @@ $('#edit_task_<%= @task.id %>_link').show();
 <% else %>
   $('#incomplete_tasks').prepend("<%= escape_javascript(render(partial: '/tasks/table', locals: {task: @task})) %>");
 <% end %>
+
+$('#flash_messages').html("<%= escape_javascript(render(partial: '/layouts/flash')) %>");
