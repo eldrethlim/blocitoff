@@ -1,5 +1,5 @@
 <tr id="task_row_<%= task.id %>">
-  <td><%= link_to task.name, edit_task_path(task), id: "edit_task_#{task.id}_link", remote: true %></td>
+  <td><%= link_to task.name, edit_task_path(task), id: "edit_task_#{task.id}_link", remote: true, data: {disable_with: task.name} %></td>
   <td align="center">
     <% if task.complete == true %>
       Completed
@@ -9,9 +9,9 @@
   </td>
   <td align="center">
     <% if task.complete == true %>
-      <%= link_to "Incomplete?", incomplete_task_path(task), controller: 'tasks_controller', action: 'incomplete', remote: true, method: :post, class: 'btn btn-warning' %>
+      <%= button_to "Incomplete?", incomplete_task_path(task), controller: 'tasks_controller', action: 'incomplete', remote: true, method: :post, class: 'btn btn-warning', data: { disable_with: 'Incomplete?'} %>
     <% else %>
-      <%= link_to "Completed?", complete_task_path(task), controller: 'tasks_controller', action: 'complete', remote: true, method: :post, class: 'btn btn-success' %>
+      <%= button_to "Completed?", complete_task_path(task), controller: 'tasks_controller', action: 'complete', remote: true, method: :post, class: 'btn btn-success', data: { disable_with: 'Completed?'} %>
     <% end %>  
   </td>
   <td align="center"> <%= link_to "Delete", task, method: :delete, remote: true, class: 'btn btn-danger', data: {confirm: 'Delete task?'} %></td>

@@ -9,7 +9,7 @@
   </div>
 
   <div class="spacing">
-    <%= button_to "Add a new task", new_task_path, id: 'new_task_link', remote: true, class: 'button btn btn-success', method: :get, disable_with: 'Please wait...' %>
+    <%= link_to "Add a new task", new_task_path, id: 'new_task_link', remote: true, class: 'btn btn-success', data: { disable_with: 'Add a new task' } %>
   </div>
 
   <div class="doublespacing">
