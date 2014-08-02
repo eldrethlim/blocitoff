@@ -15,9 +15,3 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
-
-$(document).ajaxError(function(event, request) {
-  var msg = request.getResponseHeader('X-Message');
-  if (msg) alert(msg);
-  if (msg) notice(msg);
-});

@@ -1,4 +1,4 @@
-$(document).ready(function() {
+function initialize_greeting() {
   var today = new Date();
   var hourNow = today.getHours();
   var greeting;
@@ -14,5 +14,7 @@ $(document).ready(function() {
   }
 
   document.getElementById("welcome_user_script").innerHTML='<h3>' + greeting + ',</h3>';
+}
 
-})
+$(document).ready(initialize_greeting);
+$(document).on('page:load', initialize_greeting);
