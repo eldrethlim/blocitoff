@@ -1,4 +1,8 @@
-$('#form_task_container').remove();
-$('#new_task_link').show();
-$('#incomplete_tasks').prepend("<%= escape_javascript(render(partial: '/tasks/table', locals: {task: @task})) %>");
-$('#flash_messages').html("<%= escape_javascript(render(partial: '/layouts/flash')) %>");
+<% if @task.valid? %>
+  $('#form_task_container').remove();
+  $('#new_task_link').show();
+  $('#incomplete_tasks').prepend("<%= escape_javascript(render(partial: '/tasks/table', locals: {task: @task})) %>");
+  $('#flash_messages').html("<%= escape_javascript(render(partial: '/layouts/flash')) %>");
+<% else %>
+  $('#flash_messages').html("<%= escape_javascript(render(partial: '/layouts/flash')) %>");
+<% end %>
