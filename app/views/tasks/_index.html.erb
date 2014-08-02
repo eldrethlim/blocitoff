@@ -4,7 +4,7 @@
     <% if current_user.sign_in_count == 0 %>
       <h3><u>Welcome <%= current_user.username %>!</u></h3>
     <% else %>
-      <script src="javascripts/welcome_day.js"></script><h3><u><%= current_user.username %></u></h3>
+      <u><script src="javascripts/welcome_day.js"></script><h3><%= current_user.username %></h3></u>
     <% end %>
   </div>
 
