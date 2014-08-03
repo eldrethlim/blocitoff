@@ -4,16 +4,16 @@ function initialize_greeting() {
   var greeting;
 
   if (hourNow > 18) {
-    greeting = 'Good evening';
+    greeting = 'Pleasant evening!';
   } else if (hourNow > 12) {
-    greeting = 'Good afternoon';
+    greeting = 'Good afternoon!';
   } else if (hourNow > 0) {
-    greeting = 'Good morning';
+    greeting = 'Jolly good morning!';
   } else {
     greeting = 'Welcome';
   }
 
-  document.getElementById("welcome_user_script").innerHTML='<h3>' + greeting + ',</h3>';
+  document.getElementById("welcome_user_script").innerHTML='<h3>' + greeting + '</h3>';
 }
 
 $(document).ready(initialize_greeting);

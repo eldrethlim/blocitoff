@@ -16,7 +16,11 @@
         </div>
        <div class="pull-right user-info">
         <% if current_user %>
-          <%= current_user.username %>
+          <% if current_user.sign_in_count == 0 %>
+            Welcome, <%= current_user.username %>
+          <% else %>
+            Welcome back, <%= current_user.username %>
+          <% end %>
           <%= link_to edit_user_registration_path, class: 'btn btn-primary btn-sm' do %>
             <span class="glyphicon glyphicon-user"></span>
           <% end %>
