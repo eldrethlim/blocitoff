@@ -9,6 +9,12 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :api do
+    resources :users do
+      resources :tasks
+    end
+  end
+
   #Home Page
   root to: "welcome#index"
 end
