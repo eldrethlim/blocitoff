@@ -9,7 +9,7 @@ describe Api::TasksController do
     expect(response.body).to eq([task].to_json)
   end
 
-  it 'should allow to create tasks' do
+  it 'should allow user to create tasks' do
     user = create_user
 
     expect {
@@ -20,6 +20,27 @@ describe Api::TasksController do
     expect(json.keys).to eq(["id", "name", "user_id", "created_at", "updated_at", "complete"])
     expect(json["name"]).to eq("First task")
     expect(json["user_id"]).to eq(user.id)
+  end
+
+  it 'should allow user to update tasks' do
+    user = create_user
+
+    task = Task.create!(user: user, name: 'First task')
+    put :update, user_id: user.id, id: task.id, task: {name: 'Edited first task'}
+
+    json = JSON.parse(response.body)
+    expect(json.keys).to eq(["id", "name", "user_id", "created_at", "updated_at", "complete"])
+    expect(json["name"]).to eq("Edited first task")
+  end
+
+  it 'should allow user to delete tasks' do
+    user = create_user
+    task = Task.create(user: user, name: 'first task')
+
+    delete :destroy, user_id: user.id, id: task.id
+
+    json = JSON.parse(response.body)
+    expect(json).to eq({'result' => 'Deleted'})
   end
 
   def create_user
