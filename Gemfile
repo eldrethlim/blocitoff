@@ -15,6 +15,9 @@ group :production do
   gem 'rails_12factor'
 end
 
+#Serializer
+gem 'active_model_serializers'
+
 #Testing
 group :development, :test do
   gem 'rspec-rails'
