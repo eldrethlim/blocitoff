@@ -5,13 +5,20 @@ describe Api::TasksController do
     user = create_user
     task = Task.create!(user: user, name: 'First task')
 
-    get :index, user_id: user.id
+    get :index, user_id: user.id, password: 'Password1'
     json = JSON.parse(response.body)
     task_json = json["tasks"].first
     expect(task_json.keys).to eq(["id", "name", "user_id", "created_at", "updated_at", "complete", "days_left"])
     expect(task_json["name"]).to eq("First task")
     expect(task_json["user_id"]).to eq(user.id)
     expect(task_json["days_left"]).to eq(7)
+  end
+
+  it 'should not allow to list tasks if the password was not given' do
+    user = create_user
+
+    get :index, user_id: user.id
+    expect(response.body).to eq('forbidden')
   end
 
   it 'should allow user to create tasks' do

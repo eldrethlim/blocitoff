@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/users/sign_in' => redirect('/')
+
   #Home Page
   root to: "welcome#index"
 end

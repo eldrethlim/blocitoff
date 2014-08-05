@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
+  include FriendlyId
+  friendly_id :username, use: :slugged
   has_many :tasks
-  validates_uniqueness_of :username
-  validates_uniqueness_of :email
+  validates_uniqueness_of :username, :email
 
   # Include default devise modules. OThers available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

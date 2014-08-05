@@ -28,6 +28,9 @@ group :development, :test do
   gem 'pry-doc'
 end
 
+#Friendly_id
+gem 'friendly_id', '~> 5.0.0'
+
 #Bootstrap
 gem 'bootstrap-sass', '~> 3.2.0'
 
