@@ -41,9 +41,9 @@ class Api::TasksController < ApplicationController
     task = user.tasks.find(params[:id])
     if current_user == user
       if task.destroy
-        render json: {'result' => 'Task deleted'}
+        render text: "Task deleted"
       else
-        render json: {'result' => 'Error deleting task'}
+        render json: "Error deleting task"
       end
     else
       display_task_error
