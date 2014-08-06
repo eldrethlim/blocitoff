@@ -7,30 +7,46 @@ class Api::TasksController < ApplicationController
   def index
     user = User.friendly.find(params[:user_id])
     tasks = user.tasks.all
-    render json: tasks
+    if current_user == user
+      render json: tasks
+    else
+      display_task_error
+    end
   end
 
   def create
     user = User.friendly.find(params[:user_id])
-    task = user.tasks.build(task_params)
-    task.save
-    render json: task
+    if current_user == user
+      task = user.tasks.build(task_params)
+      task.save
+      render json: task
+    else
+      display_task_error
+    end
   end
 
   def update
     user = User.friendly.find(params[:user_id])
     task = user.tasks.find(params[:id])
-    task.update_attributes(task_params)
-    render json: task
+    if current_user == user
+      task.update_attributes(task_params)
+      render json: task
+    else
+      display_task_error
+    end
   end
 
   def destroy
     user = User.friendly.find(params[:user_id])
     task = user.tasks.find(params[:id])
-    if task.destroy
-      render json: {'result' => 'Deleted'}
+    if current_user == user
+      if task.destroy
+        render json: {'result' => 'Task deleted'}
+      else
+        render json: {'result' => 'Error deleting task'}
+      end
     else
-      render json: {'result' => 'Failed'}
+      display_task_error
     end
   end
 
@@ -41,8 +57,14 @@ class Api::TasksController < ApplicationController
         resource = User.find_by_username(username)
           if resource.valid_password?(password)
             sign_in :user, resource
+          else
+            render text: "Invalid login details"
           end
       end
+    end
+
+    def display_task_error
+      render text: "You are not authorized to perform this task"
     end
 
     def task_params
