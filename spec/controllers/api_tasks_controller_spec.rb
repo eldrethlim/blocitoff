@@ -5,7 +5,8 @@ describe Api::TasksController do
     user = create_user
     task = Task.create!(user: user, name: 'First task')
 
-    get :index, user_id: user.id, password: 'Password1'
+    http_login user.username, 'Password1'
+    get :index, user_id: user.id
     json = JSON.parse(response.body)
     task_json = json["tasks"].first
     expect(task_json.keys).to eq(["id", "name", "user_id", "created_at", "updated_at", "complete", "days_left"])
@@ -18,12 +19,13 @@ describe Api::TasksController do
     user = create_user
 
     get :index, user_id: user.id
-    expect(response.body).to eq('forbidden')
+    expect(response.body).to eq("HTTP Basic: Access denied.\n")
   end
 
   it 'should allow user to create tasks' do
     user = create_user
 
+    http_login user.username, 'Password1'
     expect {
       post :create, user_id: user.id, task: {name: 'First task'}
     }.to change(user.tasks, :count).by(1)
@@ -38,6 +40,7 @@ describe Api::TasksController do
   it 'should allow user to update tasks' do
     user = create_user
 
+    http_login user.username, 'Password1'
     task = Task.create!(user: user, name: 'First task')
     put :update, user_id: user.id, id: task.id, task: {name: 'Edited first task'}
 
@@ -51,10 +54,10 @@ describe Api::TasksController do
     user = create_user
     task = Task.create(user: user, name: 'first task')
 
+    http_login user.username, 'Password1'
     delete :destroy, user_id: user.id, id: task.id
 
-    json = JSON.parse(response.body)
-    expect(json).to eq({'result' => 'Deleted'})
+    expect(response.body).to eq("Task deleted")
   end
 
   def create_user
@@ -64,4 +67,8 @@ describe Api::TasksController do
     user.save!
     user
   end
+
+  def http_login(username, password)
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials(username, password)
+  end 
 end
