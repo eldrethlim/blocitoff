@@ -1,6 +1,6 @@
 class Api::TasksController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_filter :check_auth
+  before_filter :check_user_auth
 
   respond_to :json
 
@@ -36,7 +36,7 @@ class Api::TasksController < ApplicationController
 
   private
 
-    def check_auth
+    def check_user_auth
       authenticate_or_request_with_http_basic do |username,password|
         resource = User.find_by_username(username)
           if resource.valid_password?(password)
