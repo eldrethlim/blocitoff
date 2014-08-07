@@ -14,8 +14,10 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
 
     if @task.update_attributes(task_params)
+      flash.clear
       flash[:notice] = "Task updated."
     else
+      flash.clear
       flash[:error] = "Error updating task."
     end
     
@@ -27,8 +29,10 @@ class TasksController < ApplicationController
   def create
     @task = current_user.tasks.build(task_params)
     if @task.save
+      flash.clear
       flash[:notice] = "New task added."
     else
+      flash.clear
       flash[:error] = "You can't create an empty task!"
     end
 
@@ -41,8 +45,10 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
 
     if @task.destroy
+      flash.clear
       flash[:notice] = "Task deleted."
     else
+      flash.clear
       flash[:error] = "Error deleting task."
     end
     
@@ -55,8 +61,10 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     
     if @task.update(complete: true)
+      flash.clear
       flash[:notice] = "Task completed. Good job!"
     else
+      flash.clear
       flash[:error] = "Error completing task."
     end
 
