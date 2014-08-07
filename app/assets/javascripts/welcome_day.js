@@ -13,7 +13,11 @@ function initialize_greeting() {
     greeting = 'Welcome';
   }
 
-  document.getElementById("welcome_user_script").innerHTML='<h3>' + greeting + '</h3>';
+  var welcome_user = document.getElementById("welcome_user_script");
+  
+  if (welcome_user) {
+    welcome_user.innerHTML='<h3>' + greeting + '</h3>'; 
+  }
 }
 
 $(document).ready(initialize_greeting);

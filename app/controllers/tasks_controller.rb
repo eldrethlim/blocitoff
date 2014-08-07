@@ -29,7 +29,7 @@ class TasksController < ApplicationController
     if @task.save
       flash[:notice] = "New task added."
     else
-      flash[:error] = "You can't create an empty task!."
+      flash[:error] = "You can't create an empty task!"
     end
 
     respond_with(@task) do |f|

@@ -26,6 +26,7 @@ group :development, :test do
   gem 'capybara'
   gem 'pry-rails'
   gem 'pry-doc'
+  gem 'poltergeist'
 end
 
 #Friendly_id
