@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   get 'tasks/index'
 
   devise_for :users
+  
+  resources :users
   resources :tasks do
     member do
       post 'complete'
